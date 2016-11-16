@@ -10,6 +10,7 @@ namespace Task1
     {
         public static IEnumerable<int> GenerateFibonacci(int n)
         {
+            if (n <= 0) throw new ArgumentOutOfRangeException(nameof(n));
             int F0 = 0;
             int F1 = 1;
             for (int i = 0; i < n; i++)
