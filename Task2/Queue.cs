@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,14 +10,19 @@ namespace Task2
 {
     public class Queue<T> : IEnumerable<T>
     {
+        private static readonly int INITIAL_SIZE = 10;
         private T[] array;
         public int count;
 
         public Queue()
         {
-            array = new T[0];
+            array = new T[INITIAL_SIZE];
         }
 
+        public Queue(int size)
+        {
+            array=new T[size];
+        }
         public void Enqueue(T element)
         {
             CheckSize();
@@ -48,7 +54,7 @@ namespace Task2
         }
         class Enumerator<T> : IEnumerator<T>
         {
-            private Queue<T> _queue;
+            private readonly Queue<T> _queue;
             private int _index;
 
             public Enumerator(Queue<T> queue)
@@ -84,7 +90,7 @@ namespace Task2
 
             public void Reset()
             {
-                throw new NotImplementedException();
+                _index = -1;
             }
 
             public void Dispose()
