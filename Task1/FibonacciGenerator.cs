@@ -8,6 +8,11 @@ namespace Task1
 {
     public class FibonacciGenerator
     {
+        /// <summary>
+        /// Generates sequence of N Fibonacci numbers
+        /// </summary>
+        /// <param name="n">Number of numbers</param>
+        /// <returns>Sequence of Fibonacci numbers</returns>
         public static IEnumerable<int> GenerateFibonacci(int n)
         {
             if (n <= 0) throw new ArgumentOutOfRangeException(nameof(n));
