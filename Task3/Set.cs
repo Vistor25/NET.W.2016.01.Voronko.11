@@ -39,7 +39,10 @@ namespace Task3
                 array[i] = array[i + 1];
             }
         }
-
+        /// <summary>
+        /// Adds an item into the set
+        /// </summary>
+        /// <param name="item">item that we add</param>
         public void Add(T item)
         {
             foreach (var element in array)
@@ -48,7 +51,10 @@ namespace Task3
              }
             array[count++] = item;
         }
-
+        /// <summary>
+        /// Deletes the item from the set
+        /// </summary>
+        /// <param name="item">Item that we want to delete</param>
         public void Remove(T item)
         {
             int index = 0;
@@ -62,13 +68,21 @@ namespace Task3
             }
             count--;
         }
-
+        /// <summary>
+        /// Approves or disapproves that item exists in the set
+        /// </summary>
+        /// <param name="item">item we want to check existense</param>
+        /// <returns>true or false</returns>
         public bool Contains(T item)
         {
             if (array.Contains(item)) return true;
             return false;
         }
-
+        /// <summary>
+        /// Unions one set with another
+        /// </summary>
+        /// <param name="otherSet">set we union with</param>
+        /// <returns>Unioned set</returns>
         public Set<T> Union(Set<T> otherSet)
         {
             
@@ -78,7 +92,11 @@ namespace Task3
             }
             return this;
         }
-
+        /// <summary>
+        /// Intersects one set with another
+        /// </summary>
+        /// <param name="otherSet">set we intersect with</param>
+        /// <returns>Intersected set</returns>
         public Set<T> Intersection(Set<T> otherSet)
         {
             foreach (var element in this)
@@ -87,7 +105,11 @@ namespace Task3
             }
             return this;
         }
-
+        /// <summary>
+        /// Differences one set with another
+        /// </summary>
+        /// <param name="otherSet">set we difference with</param>
+        /// <returns>Differenced set</returns>
         public Set<T> Difference(Set<T> otherSet)
         {
             foreach (var element in this)
@@ -96,7 +118,11 @@ namespace Task3
             }
             return this;
         }
-
+        /// <summary>
+        /// Symmetric differences one set with another
+        /// </summary>
+        /// <param name="otherSet">set we difference with</param>
+        /// <returns></returns>
         public Set<T> SymmetricDifference(Set<T> otherSet)
         {
             Set<T> union = Union(otherSet);

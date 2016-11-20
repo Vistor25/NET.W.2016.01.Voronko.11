@@ -12,8 +12,6 @@ namespace Task2
     {
         private static readonly int INITIAL_SIZE = 10;
         private T[] array;
-        private int head;
-        private int tail;
         public int count;
 
         public Queue()
@@ -25,23 +23,49 @@ namespace Task2
         {
             array=new T[size];
         }
+        public Queue(IEnumerable<T> collection)
+        {
+            foreach(var element in collection)
+            {
+                Enqueue(element);
+            }
+        }
+        /// <summary>
+        /// Adds the element into the last position of the queue
+        /// </summary>
+        /// <param name="element">Element that we add</param>
         public void Enqueue(T element)
         {
             CheckSize();
-            array[tail++] = element;
-            count++;
-            if (tail == array.Length) tail = 0;
+            array[count++] = element;
         }
-
+        /// <summary>
+        /// Deletes the last element in the queue
+        /// </summary>
+        /// <returns>the deleted element</returns>
         public T Dequeue()
         {
-            T result = array[head++];
+            T result = array[0];
+            Copy(0);
             count--;
-            if (head == array.Length) head = 0;
             return result;
         }
-       
-       private void CheckSize()
+        /// <summary>
+        /// Peeks the first element of the queue
+        /// </summary>
+        /// <returns>Peeked element</returns>
+        public T Peek()
+        {
+            return array[0];
+        }
+        private void Copy(int from)
+        {
+            for (int i = from; i < array.Length - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+        }
+        private void CheckSize()
         {
             if (array.Length == count)
             {
