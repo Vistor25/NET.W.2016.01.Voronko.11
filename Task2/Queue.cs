@@ -12,6 +12,8 @@ namespace Task2
     {
         private static readonly int INITIAL_SIZE = 10;
         private T[] array;
+        private int head;
+        private int tail;
         public int count;
 
         public Queue()
@@ -26,26 +28,20 @@ namespace Task2
         public void Enqueue(T element)
         {
             CheckSize();
-            array[count++] = element;
+            array[tail++] = element;
+            count++;
+            if (tail == array.Length) tail = 0;
         }
 
         public T Dequeue()
         {
-            T result = array[0];
-            Copy(0);
+            T result = array[head++];
             count--;
+            if (head == array.Length) head = 0;
             return result;
         }
-        
-
-        private void Copy(int from)
-        {
-            for (int i = from; i < array.Length - 1; i++)
-            {
-                array[i] = array[i + 1];
-            }
-        }
-        private void CheckSize()
+       
+       private void CheckSize()
         {
             if (array.Length == count)
             {
