@@ -12,6 +12,8 @@ namespace Task2
     {
         private static readonly int INITIAL_SIZE = 10;
         private T[] array;
+        private int head;
+        private int tail;
         public int count;
 
         public Queue()
@@ -37,7 +39,9 @@ namespace Task2
         public void Enqueue(T element)
         {
             CheckSize();
-            array[count++] = element;
+            array[tail++] = element;
+            count++;
+            if (tail == array.Length) tail = 0;
         }
         /// <summary>
         /// Deletes the last element in the queue
@@ -45,9 +49,9 @@ namespace Task2
         /// <returns>the deleted element</returns>
         public T Dequeue()
         {
-            T result = array[0];
-            Copy(0);
+            T result = array[head++];
             count--;
+            if (head == array.Length) head = 0;
             return result;
         }
         /// <summary>
@@ -56,15 +60,9 @@ namespace Task2
         /// <returns>Peeked element</returns>
         public T Peek()
         {
-            return array[0];
+            return array[head];
         }
-        private void Copy(int from)
-        {
-            for (int i = from; i < array.Length - 1; i++)
-            {
-                array[i] = array[i + 1];
-            }
-        }
+   
         private void CheckSize()
         {
             if (array.Length == count)
